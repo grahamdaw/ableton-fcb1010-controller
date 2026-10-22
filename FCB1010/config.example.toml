@@ -1,0 +1,42 @@
+# FCB1010 Remote Script settings.
+#
+# install.sh copies this file to config.toml beside it (once; your edits are
+# kept on update). Edit config.toml, then re-select the control surface in
+# Live's Preferences -> Link, Tempo & MIDI to apply. Any key you delete falls
+# back to the default shown here; an invalid value is logged to Log.txt with
+# an "FCB1010:" prefix and the default is used instead.
+
+# MIDI channel the pedal sends on (1-16). Must match the pedal's presets.
+midi_channel = 16
+
+# A Program Change and a note for the same switch within this many
+# milliseconds count as one press.
+dedup_window_ms = 50
+
+# What scene/track navigation does at the first or last item: "clamp" or "wrap".
+navigation = "clamp"
+
+# Highlight box: "row" frames the whole focused scene, "slot" only the focused clip slot.
+box_width = "row"
+
+# After Launch scene, move the focus to the next scene.
+scene_launch_advances = false
+
+# Write a log line for every press to Log.txt.
+debug = false
+
+# One line per switch: the action it triggers, and the Program Change and
+# note the pedal sends for it (both must match the pedal's presets).
+# Actions: track_prev, track_next, clip_launch, clip_stop, slot_record,
+#          scene_prev, scene_next, scene_launch, stop_all, undo, none
+[switches]
+1 = { action = "track_prev", pc = 0, note = 60 }
+2 = { action = "track_next", pc = 1, note = 61 }
+3 = { action = "clip_launch", pc = 2, note = 62 }
+4 = { action = "clip_stop", pc = 3, note = 63 }
+5 = { action = "slot_record", pc = 4, note = 64 }
+6 = { action = "scene_prev", pc = 5, note = 65 }
+7 = { action = "scene_next", pc = 6, note = 66 }
+8 = { action = "scene_launch", pc = 7, note = 67 }
+9 = { action = "stop_all", pc = 8, note = 68 }
+10 = { action = "undo", pc = 9, note = 69 }
