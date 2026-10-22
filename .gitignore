@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+# Local, per-machine settings; copied from config.example.toml by install.sh
+FCB1010/config.toml
