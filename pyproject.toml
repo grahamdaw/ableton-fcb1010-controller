@@ -30,6 +30,8 @@ select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
 [tool.pyright]
 pythonVersion = "3.11"
 typeCheckingMode = "basic"
+# Live ships only as stubs (ableton-live-stubs); the real module exists inside Live.
+reportMissingModuleSource = false
 include = ["FCB1010", "tests"]
 
 [tool.pytest.ini_options]
