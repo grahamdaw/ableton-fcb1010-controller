@@ -8,22 +8,20 @@ Nothing has run inside Live yet, so the first run is a shakedown: the most
 likely failures are at load time, where the code meets `ableton.v3`.
 
 Before you start:
-- **The code isn't on `main` until the stacked PRs are merged.** The default
-  `install.sh` clones `main`, so install from the stack's top branch instead
-  (step 1.1).
-- **Don't install from a temporary worktree.** If it is deleted, the link in
-  Remote Scripts breaks. Use your main checkout.
+- **Use your main checkout.** If you install from a temporary worktree and
+  it is deleted, the link in Remote Scripts breaks.
 - **The smoke test changes the Set.** Switch 5 arms track 1 and starts
   recording, and switch 10 runs Undo. Use a scratch Set.
 
-### 1.1 Install from the branch
-- [ ] In your main checkout of the repo:
+### 1.1 Install from your checkout
+- [ ] In your main checkout of the repo, on `main`:
   ```bash
-  git fetch && git checkout claude/fcb-08-docs && uv sync && make install
+  git checkout main && git pull && uv sync && make install
   ```
   This links the checkout into
   `~/Music/Ableton/User Library/Remote Scripts/FCB1010` and creates
-  `FCB1010/config.toml`.
+  `FCB1010/config.toml`. (`install.sh` on its own installs a separate clone
+  instead; that is the end-user path, tested in step 2.)
 
 ### 1.2 Smoke test without the pedal (IAC Driver)
 - [ ] In Audio MIDI Setup → MIDI Studio, open IAC Driver and tick "Device is
@@ -78,13 +76,12 @@ Before you start:
   [specs/INITIAL_SPEC.md → Acceptance tests](specs/INITIAL_SPEC.md#acceptance-tests)
   with the pedal, first on the 4-track, 8-scene Set and then on an empty Set.
 - [ ] For each item that fails, save the `FCB1010:` lines from `make log`.
-- [ ] When everything passes, merge the stacked PRs in order, starting with
-  PR #1.
 
 ## 2. Release
 
-- [ ] Once the PRs are merged, confirm the default install works:
-  `curl … install.sh | bash` on a Mac without the script.
+- [ ] Confirm the end-user install works: `curl … install.sh | bash` on a
+  Mac without the script; then change something in the repo and run it again
+  to check the update.
 - [ ] Bump the version, update `CHANGELOG.md`, and tag `v0.1.0`.
 
 ## 3. Later (not v1)
