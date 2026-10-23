@@ -6,7 +6,7 @@
 # Clones the repo (or pulls if already cloned) and links its FCB1010 folder
 # into Live's User Library Remote Scripts. Running it again updates in place.
 # With FCB1010_DEV=1, run from a checkout, it links that checkout instead
-# and leaves git alone (the dev loop: edit, re-select the control surface).
+# and leaves git alone (the dev loop: edit, restart Live).
 set -euo pipefail
 
 REPO_URL="${FCB1010_REPO_URL:-https://github.com/grahamdaw/ableton-fcb1010-controller.git}"

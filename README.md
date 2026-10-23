@@ -105,8 +105,9 @@ make check
 ```
 
 - `make check` runs ruff, pyright and pytest, the same as CI.
-- `make install` links this checkout into Remote Scripts. After editing,
-  re-select the control surface in Live to reload.
+- `make install` links this checkout into Remote Scripts. After editing
+  the code, restart Live to load it; re-selecting the control surface only
+  re-reads `config.toml`.
 - `make log` follows Log.txt, filtered to `FCB1010:` lines.
 - `make smoke PORT="IAC Driver Bus 1"` sends the ten presses to a running
   Live; it needs `debug = true`.

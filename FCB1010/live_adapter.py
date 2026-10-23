@@ -63,7 +63,7 @@ class FocusBox(Component):
 
 
 class Specification(ControlSurfaceSpecification):
-    """No elements or mappings: the pedal's MIDI is handled in receive_midi."""
+    """No elements or mappings: the pedal's MIDI is handled in process_midi_bytes."""
 
     elements_type = ElementsBase
 
@@ -107,13 +107,14 @@ class FCB1010(ControlSurface):
 
         self._guard(forward)
 
-    def receive_midi(self, midi_bytes: tuple[int, ...]) -> None:
+    def process_midi_bytes(self, midi_bytes: tuple[int, ...], midi_processor: Any) -> None:
         """Every forwarded message (and any Program Change Live passes on) lands here.
 
-        Replaces v3's element dispatch, which would log the pedal's messages as unknown.
+        Live 12 delivers MIDI through ``receive_midi_chunk``, not ``receive_midi``;
+        both end here, already inside the component guard. Replaces the framework's
+        element dispatch, which would log the pedal's messages as unknown.
         """
-        with self.component_guard():
-            self._controller.on_midi(tuple(midi_bytes), time.monotonic() * 1000)
+        self._controller.on_midi(tuple(midi_bytes), time.monotonic() * 1000)
 
     def refresh_state(self) -> None:
         """Live asks the script to resend its state, e.g. after a port change."""
